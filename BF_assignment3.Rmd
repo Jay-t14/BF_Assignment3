@@ -1,0 +1,37 @@
+```{r}
+
+library(fpp)
+library(fpp2)
+?ts
+
+#weekly periodicity
+plot(gasoline)
+#monthly periodicity
+plot(elecequip)
+#quarterly periodicity
+plot(euretail)
+
+Acf(gasoline)
+Acf(elecequip)
+Acf(euretail)
+
+# Random Plot
+
+set.seed(20)
+y <- ts(rnorm(100))
+plot(y)
+Acf(y)
+
+# Residuals
+
+tmp <- HoltWinters(elecequip)
+attributes(tmp)
+plot(tmp)
+tmp_f <- forecast(tmp)
+attributes(tmp_f)
+plot(tmp_f$residuals)
+hist(tmp_f$residuals)
+Acf(tmp_f$residuals)
+accuracy(tmp_f)
+
+```
